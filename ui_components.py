@@ -145,7 +145,6 @@ def display_results(df: pd.DataFrame):
     """Fancy results with metrics + table"""
     overall_trust = df["Trust Score"].str.rstrip('%').astype(float).mean()
     
-    # Top metrics row
     col1, col2, col3 = st.columns(3)
     with col1:
         st.markdown('<div class="metric-container">', unsafe_allow_html=True)
@@ -158,8 +157,7 @@ def display_results(df: pd.DataFrame):
         st.markdown('</div>', unsafe_allow_html=True)
     
     
-    
-    # Results table
+
     st.markdown("## 📊 Claim Analysis")
     st.dataframe(
         df, 
@@ -171,7 +169,7 @@ def display_results(df: pd.DataFrame):
         hide_index=True
     )
     
-    # Summary stats
+    
     st.markdown("### 📈 Summary")
     col1, col2, col3 = st.columns(3)
     green_count = len(df[df["Status"].str.contains("🟢")])
