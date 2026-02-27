@@ -4,13 +4,11 @@ import pandas as pd
 import streamlit as st
 import wikipedia
 
-# Import UI components
 from ui_components import (
     load_styles, sidebar_info, main_header, 
     input_section, analyze_button, display_results
 )
 
-# Core logic functions
 def clean_text(text: str) -> str:
     """Clean text for comparison"""
     text = text.lower()
@@ -71,15 +69,12 @@ def main():
         layout="wide"
     )
     
-    # Load beautiful UI
     load_styles()
     sidebar_info()
     main_header()
     
-    # Get user input
     user_text, max_sentences = input_section()
     
-    # Analyze button
     if analyze_button():
         if not user_text.strip():
             st.warning("👋 Please paste AI-generated text first!")
@@ -92,7 +87,7 @@ def main():
                 st.error("❌ No valid claims found. Use complete sentences.")
                 st.stop()
             
-            # Process each claim
+            
             rows = []
             for idx, claim in enumerate(claims, start=1):
                 title, snippet = get_wikipedia_snippet(claim, max_sentences)
